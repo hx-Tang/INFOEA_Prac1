@@ -1,10 +1,15 @@
-def counting_ones(P):
+
+def counting_ones(p):
     pass
 
 
-def trap_tl(P):
-    pass
+class TrapFunc:
+    def __init__(self, k, d):
+        self.k = k
+        self.d = d
 
+    def trap_tl(self, p):
+        pass
 
-def trap_ntl(P):
-    pass
+    def trap_ntl(self, p):
+        pass

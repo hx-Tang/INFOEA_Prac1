@@ -4,8 +4,12 @@ from Fitness import *
 
 l = 40
 N = 10
-fitness = counting_ones
 
+fitness = counting_ones
+# fitness = TrapFunc(4, 1).trap_tl
+# fitness = TrapFunc(4, 1).trap_ntl
+# fitness = TrapFunc(4, 2.5).trap_tl
+# fitness = TrapFunc(4, 2.5).trap_ntl
 
 def search(N):
     GA = GenAlg(l, N, fitness)

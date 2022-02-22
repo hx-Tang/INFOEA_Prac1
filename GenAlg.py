@@ -4,6 +4,7 @@ class GenAlg:
         self.l = l
         self.P = []
         self.fitness = fitness
+        self.count = 0
 
     def uni_x(self):
         pass
@@ -12,7 +13,8 @@ class GenAlg:
         pass
 
     def evo(self):
-        pass
+        ch = []
+        return ch
 
     def run(self):
-        pass
+        return True
