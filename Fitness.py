@@ -1,82 +1,42 @@
 
-# def counting_ones(p):
-#     pass
-
-
-# class TrapFunc:
-#     def __init__(self, k, d):
-#         self.k = k
-#         self.d = d
-
-#     def trap_tl(self, p):
-#         pass
-
-#     def trap_ntl(self, p):
-#         pass
-
-
-#p = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-#b is the fitness
-
 def counting_ones(p):
-    return (sum(p))
+    return sum(p)
 
 
-def trap_tl(p):
-    k = 4
-    d = 1
-    b = 0
-    for i in range(len(p)//k):
-       if sum(p[i*k:i*k+k]) == k:
-           b=b+k
-       else:
-           x = k-d - (k-d)/(k-1)*sum(p[i*k:i*k+k])
-           b = b+x
-    return b
+class TrapFunc:
+    def __init__(self, k, d):
+        self.k = k
+        self.d = d
+
+    def trap_tl(self, p):
+        b = 0
+        for i in range(len(p) // self.k):
+            if sum(p[i * self.k:i * self.k + self.k]) == self.k:
+                b += self.k
+            else:
+                x = self.k - self.d - (self.k - self.d) / (self.k - 1) * sum(p[i * self.k:i * self.k + self.k])
+                b += x
+        return b
+
+    def trap_ntl(self, p):
+        b = 0
+        for i in range(len(p) // self.k):
+            subfunction = []
+            for j in range(self.k):
+                subfunction.append(p[j * 10 + i])
+            if sum(subfunction) == self.k:
+                b += self.k
+            else:
+                x = self.k - self.d - (self.k - self.d) / (self.k - 1) * sum(subfunction)
+                b += x
+        return b
 
 
-
-def trap_ntl(p):
-    k = 4
-    d = 2.5
-    b = 0
-    for i in range(len(p)//k):
-       if sum(p[i*k:i*k+k]) == k:
-           b=b+k
-       else:
-           x = k-d - (k-d)/(k-1)*sum(p[i*k:i*k+k])
-           b = b+x
-    return b
-
-
-def nontight_trap_tl(p):
-    k = 4
-    d = 1
-    b = 0
-    for i in range(len(p)//k):
-        subfunction = []
-        for j in range(k):
-            subfunction.append(p[j*10+i])
-        if sum(subfunction) == k:
-            b =b+k
-        else:
-            x = k - d - (k - d) / (k - 1) * sum(subfunction)
-            b = b + x
-    return b
-
-def nontight_trap_ntl(p):
-    k = 4
-    d = 2.5
-    b = 0
-    for i in range(len(p)//k):
-        subfunction = []
-        for j in range(k):
-            subfunction.append(p[j*10+i])
-        if sum(subfunction) == k:
-            b =b+k
-        else:
-            x = k - d - (k - d) / (k - 1) * sum(subfunction)
-            b = b + x
-    return b
-
-print(nontight_trap_ntl(p))
+if __name__ == "__main__":
+    p = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    fitness = counting_ones
+    # fitness = TrapFunc(4, 1).trap_tl
+    # fitness = TrapFunc(4, 1).trap_ntl
+    # fitness = TrapFunc(4, 2.5).trap_tl
+    # fitness = TrapFunc(4, 2.5).trap_ntl
+    print(fitness(p))
