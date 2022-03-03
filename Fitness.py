@@ -16,7 +16,7 @@ class TrapFunc:
             else:
                 x = self.k - self.d - (self.k - self.d) / (self.k - 1) * sum(p[i * self.k:i * self.k + self.k])
                 b += x
-        return b
+        return int(b)
 
     def trap_ntl(self, p):
         b = 0
@@ -29,7 +29,7 @@ class TrapFunc:
             else:
                 x = self.k - self.d - (self.k - self.d) / (self.k - 1) * sum(subfunction)
                 b += x
-        return b
+        return int(b)
 
 
 if __name__ == "__main__":

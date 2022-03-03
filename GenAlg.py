@@ -5,7 +5,7 @@ class GenAlg:
     def __init__(self, l, N, crossover, fitness):
         self.l = l
         self.N = N
-        self.P = []
+        self.P = self.instances()
         self.crossover = crossover
         self.fitness = fitness
 
@@ -26,20 +26,29 @@ class GenAlg:
         return family
 
     def run(self):
+        counter = 0
         while True:
+            c = 0
             family = self.evo()
-            counter = 0
             nextP = []
+            maxf = 0
             for f in family:
                 if f[0][1] >= f[2][1] and f[0][1] >= f[3][1] and f[1][1] >= f[2][1] and f[1][1] >= f[3][1]:
-                    counter += 1
-                if counter == 5:
-                    return False
+                    c += 1
                 sorted(f, key=lambda x: x[1])
-                if f[0] == self.l:
+                if f[0][1] > maxf:
+                    maxf = f[0][1]
+                if f[0][1] == self.l:
                     return True
                 f = [p[0] for p in f[:2]]
                 nextP += f
+            print(maxf)
+            if c != 0:
+                counter += 1
+            else:
+                counter = 0
+            if counter == 5:
+                return False
             self.P = nextP
 
 
