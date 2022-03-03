@@ -34,8 +34,8 @@ class TrapFunc:
 
 if __name__ == "__main__":
     p = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    fitness = counting_ones
-    # fitness = TrapFunc(4, 1).trap_tl
+    # fitness = counting_ones
+    fitness = TrapFunc(4, 1).trap_tl
     # fitness = TrapFunc(4, 1).trap_ntl
     # fitness = TrapFunc(4, 2.5).trap_tl
     # fitness = TrapFunc(4, 2.5).trap_ntl

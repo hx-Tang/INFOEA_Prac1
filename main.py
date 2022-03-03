@@ -5,6 +5,7 @@ from Crossover import *
 l = 40
 N = 10
 
+
 fitness = counting_ones
 # fitness = TrapFunc(4, 1).trap_tl
 # fitness = TrapFunc(4, 1).trap_ntl
