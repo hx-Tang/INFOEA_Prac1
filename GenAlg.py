@@ -15,7 +15,7 @@ class GenAlg:
             current_ins =[]
             for j in range(self.l):
                 current_ins.append(random.randint(0,1))
-            self.append(current_ins)
+            self.P.append(current_ins)
 
 
     def evo(self):
