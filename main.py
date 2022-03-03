@@ -6,11 +6,11 @@ l = 40
 N = 10
 
 
-# fitness = counting_ones
+fitness = counting_ones
 # fitness = TrapFunc(4, 1).trap_tl
 # fitness = TrapFunc(4, 1).trap_ntl
 # fitness = TrapFunc(4, 2.5).trap_tl
-fitness = TrapFunc(4, 2.5).trap_ntl
+# fitness = TrapFunc(4, 2.5).trap_ntl
 
 # crossover = uni_x
 crossover = two_x
@@ -21,6 +21,7 @@ def search(N):
     GA = GenAlg(l, N, crossover, fitness)
     if GA.run():
         N = binary_search(N // 2, N)
+        print('final N:'+str(N))
         return N
     elif N == 1280:
         return N
@@ -33,6 +34,7 @@ def binary_search(left, right):
         mid = (right + left)//2
         if mid % 10 != 0:
             return right
+        print('searching: ' + str(mid))
         GA = GenAlg(l, mid, crossover, fitness)
         if GA.run():
             right = mid
@@ -41,4 +43,4 @@ def binary_search(left, right):
 
 
 if __name__ == "__main__":
-    print(search(N))
+    search(N)

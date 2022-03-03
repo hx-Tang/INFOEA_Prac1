@@ -22,39 +22,36 @@ class GenAlg:
         group = self.P.copy()
         random.shuffle(group)
         group = zip(*(iter(group),) * 2)
-        family = [[[p, self.fitness(p)] for p in g + self.crossover(g)] for g in group]
+        family = [[[p, self.fitness(p)] for p in (g + self.crossover(g))] for g in group]
         return family
 
     def run(self):
         counter = 0
+        maxf = 0
         while True:
-            c = 0
+            counter += 1
             family = self.evo()
             nextP = []
-            maxf = 0
             for f in family:
-                if f[0][1] >= f[2][1] and f[0][1] >= f[3][1] and f[1][1] >= f[2][1] and f[1][1] >= f[3][1]:
-                    c += 1
-                sorted(f, key=lambda x: x[1])
+                f = sorted(f, key=lambda x: x[1], reverse=True)
                 if f[0][1] > maxf:
+                    counter = 0
                     maxf = f[0][1]
-                if f[0][1] == self.l:
-                    return True
                 f = [p[0] for p in f[:2]]
                 nextP += f
             print(maxf)
-            if c != 0:
-                counter += 1
-            else:
-                counter = 0
+            if maxf == self.l:
+                return True
             if counter == 5:
                 return False
             self.P = nextP
 
 
 if __name__ == "__main__":
-    a = (2, 3)
-    b = (1, 3)
+    a = ((2,4), 3)
+    b = ((1,3), 4)
+    c = [a,b]
     # random.shuffle(P)
     # group = zip(*(iter(P),) * 2)
-    print(a + b)
+    sorted(c, key=lambda x: x[1], reverse=True)
+    print(c)
