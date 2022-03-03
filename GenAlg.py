@@ -16,7 +16,7 @@ class GenAlg:
             for j in range(self.l):
                 current_ins.append(random.randint(0,1))
             self.append(current_ins)
-        return self.P
+
 
     def evo(self):
         group = self.P.copy()
