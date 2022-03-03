@@ -9,6 +9,15 @@ class GenAlg:
         self.crossover = crossover
         self.fitness = fitness
 
+    def instances(self):
+        ins = []
+        for i in range(self.N):
+            current_ins =[]
+            for j in range(self.l):
+                current_ins.append(random.randint(0,1))
+            ins.append(current_ins)
+        return ins
+
     def evo(self):
         group = self.P.copy()
         random.shuffle(group)
