@@ -10,13 +10,13 @@ class GenAlg:
         self.fitness = fitness
 
     def instances(self):
-        self.P = []
+        ins = []
         for i in range(self.N):
-            current_ins =[]
+            current_ins = []
             for j in range(self.l):
                 current_ins.append(random.randint(0,1))
-            self.P.append(current_ins)
-
+            ins.append(current_ins)
+        return ins
 
     def evo(self):
         group = self.P.copy()
