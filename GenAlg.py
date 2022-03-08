@@ -9,6 +9,13 @@ class GenAlg:
         self.crossover = crossover
         self.fitness = fitness
 
+        self.generation = 0
+        self.avgfitness = 0
+
+        self.prop = []
+        self.error = []
+        self.correct = []
+
     def instances(self):
         ins = []
         for i in range(self.N):
@@ -48,10 +55,14 @@ class GenAlg:
 
 
 if __name__ == "__main__":
-    a = ((2,4), 3)
-    b = ((1,3), 4)
-    c = [a,b]
+    a = (1,2,3)
+    b = (3,4,5)
+    print(list(zip(a,b)))
+
+    xor = [i*j for i, j in zip(a,b)]
+    print(xor)
+    # c = [a,b]
     # random.shuffle(P)
     # group = zip(*(iter(P),) * 2)
-    sorted(c, key=lambda x: x[1], reverse=True)
-    print(c)
+    # sorted(c, key=lambda x: x[1], reverse=True)
+    # print(sum(a))

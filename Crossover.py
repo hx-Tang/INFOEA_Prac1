@@ -2,7 +2,6 @@ import random
 
 
 def uni_x(p):
-    children = []
     end = len(p[0]) - 1
     x = random.randint(0, end)
     p1 = p[0]
