@@ -30,4 +30,25 @@ def err_and_corr(M1,M2):
         err = sum(xor)-sum(xor_xor)-corr
         return corr,err
 
+def average_and_std(P):
+    fit_all_1=[]
+    fit_all_0=[]
+    for instance in P:
+        fi =instance[1]
+        body =instance[0]
+        if body[0] == 1:
+            fit_all_1.append(fi)
+        else:
+            fit_all_0.append(fi)
+    if len(fit_all_1) == 0:
+        aver_1, std_1 =0,0
+    else:
+        aver_1 = sum(fit_all_1)/len(fit_all_1)
+        std_1 = std(fit_all_1)
+    if len(fit_all_0)==0:
+        aver_0, std_0=0,0
+    else:
+        aver_0 =sum(fit_all_0)/len(fit_all_0)
+        std_0 = std(fit_all_0)
+    return aver_1,std_1,aver_0,std_0
 
