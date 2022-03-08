@@ -1,5 +1,5 @@
 import random
-
+from Evaluation import *
 
 class GenAlg:
     def __init__(self, l, N, crossover, fitness):
@@ -9,12 +9,18 @@ class GenAlg:
         self.crossover = crossover
         self.fitness = fitness
 
+        self.Pwf = self.initP(self.P)
+
         self.generation = 0
         self.avgfitness = 0
 
         self.prop = []
         self.error = []
         self.correct = []
+        self.schematadata = []
+
+    def initP(self, P):
+        return [[p, self.fitness(p)]for p in P]
 
     def instances(self):
         ins = []
@@ -39,19 +45,46 @@ class GenAlg:
             counter += 1
             family = self.evo()
             nextP = []
+
+            nextPwf = []
+            err = 0
+            corr = 0
+
+            self.prop.append(one_bit_proportion(self.Pwf))
+            self.schematadata.append(average_and_std(self.Pwf))
+            self.avgfitness += average_fi(self.Pwf)
+
             for f in family:
-                f = sorted(f, key=lambda x: x[1], reverse=True)
-                if f[0][1] > maxf:
+                sortedf = sorted(f, key=lambda x: x[1], reverse=True)
+                if sortedf[0][1] > maxf:
                     counter = 0
-                    maxf = f[0][1]
-                f = [p[0] for p in f[:2]]
-                nextP += f
+                    maxf = sortedf[0][1]
+                winner = [p[0] for p in sortedf[:2]]
+                nextP += winner
+
+                # err and corr
+                parents = [p[0] for p in f[:2]]
+                winnerwf = [p for p in sortedf[:2]]
+                nextPwf += winnerwf
+                er, cor = err_and_corr(parents, winner)
+                err += er
+                corr += cor
+
+            self.error.append(err)
+            self.correct.append(corr)
+
             print(maxf)
             if maxf == self.l:
+                self.avgfitness = self.avgfitness / self.generation
                 return True
             if counter == 5:
+                self.avgfitness = self.avgfitness / self.generation
                 return False
+
+            self.generation += 1
+
             self.P = nextP
+            self.Pwf = nextPwf
 
 
 if __name__ == "__main__":

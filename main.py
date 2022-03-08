@@ -19,8 +19,6 @@ fitness = TrapFunc(4, 2.5).trap_tl
 crossover = two_x
 
 
-
-
 def run20(GA):
     suc = 0
     gens = []
@@ -28,9 +26,9 @@ def run20(GA):
     cpus = []
 
     for i in range(20):
-        start = time.clock()
+        start = time.process_time()
         re = GA.run()
-        end = time.clock()
+        end = time.process_time()
         if re:
             suc += 1
             gens.append(GA.generation)
