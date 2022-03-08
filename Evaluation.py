@@ -52,3 +52,9 @@ def average_and_std(P):
         std_0 = std(fit_all_0)
     return aver_1,std_1,aver_0,std_0
 
+def average_fi(P):
+    fi=[]
+    for instance in P:
+        fi.append(instance[1])
+    return sum(fi)/len(fi)
+
