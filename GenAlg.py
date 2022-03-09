@@ -5,11 +5,11 @@ class GenAlg:
     def __init__(self, l, N, crossover, fitness):
         self.l = l
         self.N = N
-        self.P = self.instances()
+        self.P = []
         self.crossover = crossover
         self.fitness = fitness
 
-        self.Pwf = self.initP(self.P)
+        self.Pwf = []
 
         self.generation = 0
         self.avgfitness = 0
@@ -21,6 +21,19 @@ class GenAlg:
 
     def initP(self, P):
         return [[p, self.fitness(p)]for p in P]
+
+    def reinit(self):
+        self.P = self.instances()
+
+        self.Pwf = self.initP(self.P)
+
+        self.generation = 0
+        self.avgfitness = 0
+
+        self.prop = []
+        self.error = []
+        self.correct = []
+        self.schematadata = []
 
     def instances(self):
         ins = []
@@ -39,6 +52,7 @@ class GenAlg:
         return family
 
     def run(self):
+        self.reinit()
         counter = 0
         maxf = 0
         while True:
@@ -73,7 +87,7 @@ class GenAlg:
             self.error.append(err)
             self.correct.append(corr)
 
-            print(maxf)
+            # print(maxf)
             if maxf == self.l:
                 self.avgfitness = self.avgfitness / self.generation
                 return True

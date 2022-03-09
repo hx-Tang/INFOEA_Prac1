@@ -12,8 +12,8 @@ N = 10
 # fitness = counting_ones
 # fitness = TrapFunc(4, 1).trap_tl
 # fitness = TrapFunc(4, 1).trap_ntl
-fitness = TrapFunc(4, 2.5).trap_tl
-# fitness = TrapFunc(4, 2.5).trap_ntl
+# fitness = TrapFunc(4, 2.5).trap_tl
+fitness = TrapFunc(4, 2.5).trap_ntl
 
 # crossover = uni_x
 crossover = two_x
@@ -33,9 +33,10 @@ def run20(GA):
             suc += 1
             gens.append(GA.generation)
             avgfit.append(GA.avgfitness)
-            cpus.append(start-end)
+            cpus.append(end-start)
 
     if suc >= 19:
+        print('success:', GA.N)
         print('generation:', sum(gens)/len(gens), std(gens))
         print('average fitness', sum(avgfit)/len(avgfit), std(avgfit))
         print('average cpu', sum(cpus)/len(cpus), std(cpus))
