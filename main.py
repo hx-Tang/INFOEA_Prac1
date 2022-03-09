@@ -15,8 +15,8 @@ N = 10
 # fitness = TrapFunc(4, 2.5).trap_tl
 fitness = TrapFunc(4, 2.5).trap_ntl
 
-# crossover = uni_x
-crossover = two_x
+crossover = uni_x
+# crossover = two_x
 
 
 def run20(GA):

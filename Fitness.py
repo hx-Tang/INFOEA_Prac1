@@ -16,7 +16,7 @@ class TrapFunc:
             else:
                 x = self.k - self.d - (self.k - self.d) / (self.k - 1) * sum(p[i * self.k:i * self.k + self.k])
                 b += x
-        return int(b)
+        return b
 
     def trap_ntl(self, p):
         b = 0
@@ -29,14 +29,14 @@ class TrapFunc:
             else:
                 x = self.k - self.d - (self.k - self.d) / (self.k - 1) * sum(subfunction)
                 b += x
-        return int(b)
+        return b
 
 
 if __name__ == "__main__":
     p = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     # fitness = counting_ones
-    fitness = TrapFunc(4, 1).trap_tl
+    # fitness = TrapFunc(4, 1).trap_tl
     # fitness = TrapFunc(4, 1).trap_ntl
     # fitness = TrapFunc(4, 2.5).trap_tl
-    # fitness = TrapFunc(4, 2.5).trap_ntl
+    fitness = TrapFunc(4, 2.5).trap_ntl
     print(fitness(p))
