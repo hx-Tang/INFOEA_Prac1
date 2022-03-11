@@ -8,18 +8,18 @@ import time
 l = 40
 N = 10
 
-
-# fitness = counting_ones
+fitness = counting_ones
 # fitness = TrapFunc(4, 1).trap_tl
 # fitness = TrapFunc(4, 1).trap_ntl
 # fitness = TrapFunc(4, 2.5).trap_tl
-fitness = TrapFunc(4, 2.5).trap_ntl
+# fitness = TrapFunc(4, 2.5).trap_ntl
 
-crossover = uni_x
-# crossover = two_x
+# crossover = uni_x
+crossover = two_x
 
 
 def run20(GA):
+    """run 20 time for each N"""
     suc = 0
     gens = []
     avgfit = []
@@ -46,6 +46,7 @@ def run20(GA):
 
 
 def search(N):
+    """search for minial N"""
     print('searching: ' + str(N))
     GA = GenAlg(l, N, crossover, fitness)
     if run20(GA):
@@ -59,6 +60,7 @@ def search(N):
 
 
 def binary_search(left, right):
+    """binary search for min N"""
     while True:
         mid = (right + left)//2
         if mid % 10 != 0:

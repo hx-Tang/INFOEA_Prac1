@@ -1,14 +1,17 @@
 
 def counting_ones(p):
+    """counting ones fitness"""
     return sum(p)
 
 
 class TrapFunc:
+    """trap fitness functions"""
     def __init__(self, k, d):
         self.k = k
         self.d = d
 
     def trap_tl(self, p):
+        """trap function with tightly link"""
         b = 0
         for i in range(len(p) // self.k):
             if sum(p[i * self.k:i * self.k + self.k]) == self.k:
@@ -19,6 +22,7 @@ class TrapFunc:
         return b
 
     def trap_ntl(self, p):
+        """trap function without tightly link"""
         b = 0
         for i in range(len(p) // self.k):
             subfunction = []
