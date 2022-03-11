@@ -5,12 +5,15 @@
 # M2= [[0,0,0],[0,1,0]]
 # P= [[[0],34],[[0],45]] # len = N
 
+
 def std(nums):
+    """this function is used to calculate the std"""
     avg = sum(nums)/len(nums)
     return (sum(map(lambda e: (e-avg)*(e-avg), nums))/len(nums))**0.5
 
 
 def one_bit_proportion(P):
+        """this function is used to calculate the 1-bit rate of one generation"""
         propo = []
         for instance in P:
             propo.append(instance[1]/len(instance[0]))
@@ -18,10 +21,11 @@ def one_bit_proportion(P):
 
 
 def err_and_corr(M1,M2):
-        p1 = M1[0]
-        p2 = M1[1]
-        w1 = M2[0]
-        w2 = M2[1]
+        """this function is used to calculate the Err(t) and Correct(t)"""
+        p1 = M1[0] # parent
+        p2 = M1[1] # parent
+        w1 = M2[0] # winner
+        w2 = M2[1] # winner
         xor = [i^j for i ,j in zip(p1,p2)]
         corr = sum([x*y*k for x, y, k in zip(xor,w1,w2)])
         w11 =[i*j for i, j in zip(xor,w1)]
@@ -32,6 +36,7 @@ def err_and_corr(M1,M2):
 
 
 def average_and_std(P):
+    """this function is used to calculate the average fitness and std for schema 1**** and 0****"""
     fit_all_1=[]
     fit_all_0=[]
     num_0=0
@@ -58,6 +63,7 @@ def average_and_std(P):
     return num_1, num_0, aver_1,std_1,aver_0,std_0
 
 def average_fi(P):
+    """calculate the average fitness for one generation"""
     fi=[]
     for instance in P:
         fi.append(instance[1])
